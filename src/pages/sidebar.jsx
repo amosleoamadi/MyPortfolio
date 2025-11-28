@@ -29,6 +29,7 @@ const Sidebar = () => {
     { path: "/services", icon: ServerIcon, label: "Services" },
     { path: "/contact", icon: Mail, label: "Contact" },
   ];
+
   return (
     <>
       <MobileToggle onClick={() => setIsOpen(!isOpen)}>
@@ -88,6 +89,12 @@ const Sidebar = () => {
           </SocialLink>
         </SocialLinks>
       </SidebarWrapper>
+
+      {/* Overlay for mobile */}
+      <Overlay
+        className={isOpen ? "open" : ""}
+        onClick={() => setIsOpen(false)}
+      />
     </>
   );
 };
@@ -95,7 +102,7 @@ const Sidebar = () => {
 export default Sidebar;
 
 const SidebarWrapper = styled.aside`
-  position: sticky;
+  position: fixed;
   left: 0;
   top: 0;
   width: 260px;
@@ -105,14 +112,42 @@ const SidebarWrapper = styled.aside`
   padding: 32px 20px;
   display: flex;
   flex-direction: column;
-  z-index: 100;
+  z-index: 1000;
+  transition: transform 0.3s ease;
 
   @media (max-width: 768px) {
     transform: translateX(-100%);
-    transition: transform 0.3s ease;
 
     &.open {
       transform: translateX(0);
+    }
+  }
+
+  @media (min-width: 769px) {
+    position: sticky;
+    transform: translateX(0);
+  }
+`;
+
+const Overlay = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+
+    &.open {
+      opacity: 1;
+      visibility: visible;
     }
   }
 `;
@@ -122,7 +157,7 @@ const MobileToggle = styled.button`
   position: fixed;
   top: 20px;
   left: 20px;
-  z-index: 101;
+  z-index: 1001;
   background: #1a1a24;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;

@@ -64,7 +64,7 @@ const ContactPage = () => {
             </IconWrapper>
             <InfoContent>
               <h4>Phone</h4>
-              <a href="tel:+2349029469247">+234 902-469-247</a>
+              <a href="tel:+2349029469247">+234 902-9469-247</a>
             </InfoContent>
           </InfoCard>
 

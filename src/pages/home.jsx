@@ -1,65 +1,92 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Sparkles } from "lucide-react";
+import { ArrowRight, Download, Sparkles, CheckCircle } from "lucide-react";
 
 const HomePage = () => {
+  const [showDownloadSuccess, setShowDownloadSuccess] = useState(false);
+
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/Amadi_Amos_Leo_CV.pdf';
+    link.download = 'Amadi_Amos_Leo_CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    setShowDownloadSuccess(true);
+    setTimeout(() => setShowDownloadSuccess(false), 3000);
+  };
+
   return (
-    <Card
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <Content>
-        <TextContent>
-          <Badge>
-            <Sparkles size={14} />
-            Available for work
-          </Badge>
-          <Greeting>Hello, I'm</Greeting>
-          <Title>
-            <span>Amadi Amos Leo</span>
-          </Title>
-          <Role>Frontend Developer</Role>
-          <Subtitle>
-            A passionate frontend developer specializing in React, JavaScript,
-            and modern web technologies. I create beautiful, responsive, and
-            user-friendly web applications that deliver exceptional user
-            experiences.
-          </Subtitle>
-          <ButtonGroup>
-            <PrimaryButton
-              href="/projects"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              View My Work
-              <ArrowRight size={16} />
-            </PrimaryButton>
-            <SecondaryButton
-              href="/contact"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Download size={16} />
-              Download CV
-            </SecondaryButton>
-          </ButtonGroup>
-        </TextContent>
-        <AvatarWrapper
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <Avatar>AA</Avatar>
-          <StatusDot />
-        </AvatarWrapper>
-      </Content>
-    </Card>
+    <>
+      <Card
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Content>
+          <TextContent>
+            <Badge>
+              <Sparkles size={14} />
+              Available for work
+            </Badge>
+            <Greeting>Hello, I'm</Greeting>
+            <Title>
+              <span>Amadi Amos Leo</span>
+            </Title>
+            <Role>Frontend Developer</Role>
+            <Subtitle>
+              A passionate frontend developer specializing in React, JavaScript,
+              and modern web technologies. I create beautiful, responsive, and
+              user-friendly web applications that deliver exceptional user
+              experiences.
+            </Subtitle>
+            <ButtonGroup>
+              <PrimaryButton
+                href="/projects"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                View My Work
+                <ArrowRight size={16} />
+              </PrimaryButton>
+              <SecondaryButton
+                onClick={handleDownloadCV}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                as={motion.button}
+              >
+                <Download size={16} />
+                Download CV
+              </SecondaryButton>
+            </ButtonGroup>
+          </TextContent>
+          <AvatarWrapper
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <Avatar>AA</Avatar>
+            <StatusDot />
+          </AvatarWrapper>
+        </Content>
+      </Card>
+
+      <DownloadToast
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: showDownloadSuccess ? 1 : 0, y: showDownloadSuccess ? 0 : 50 }}
+        transition={{ duration: 0.3 }}
+      >
+        <CheckCircle size={20} />
+        CV downloaded successfully!
+      </DownloadToast>
+    </>
   );
 };
 
 export default HomePage;
+
 const Card = styled(motion.section)`
   background: linear-gradient(135deg, #1a1a24 0%, #12121a 100%);
   border-radius: 24px;
@@ -67,6 +94,8 @@ const Card = styled(motion.section)`
   border: 1px solid rgba(255, 255, 255, 0.06);
   position: relative;
   overflow: hidden;
+  width: 100%;
+  min-height: 400px;
 
   &::before {
     content: "";
@@ -86,6 +115,14 @@ const Card = styled(motion.section)`
   @media (max-width: 768px) {
     padding: 28px 20px;
     border-radius: 16px;
+    width: 100%;
+    margin: 0;
+  }
+
+  @media (max-width: 480px) {
+    border-radius: 16px;
+    padding: 24px 16px;
+    width: 100%;
   }
 `;
 
@@ -94,6 +131,7 @@ const Content = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 40px;
+  width: 100%;
 
   @media (max-width: 900px) {
     flex-direction: column;
@@ -102,11 +140,13 @@ const Content = styled.div`
 
   @media (max-width: 768px) {
     gap: 24px;
+    width: 100%;
   }
 `;
 
 const TextContent = styled.div`
   flex: 1;
+  width: 100%;
 `;
 
 const Badge = styled.div`
@@ -191,6 +231,7 @@ const Subtitle = styled.p`
     font-size: 14px;
     margin-bottom: 24px;
     line-height: 1.6;
+    max-width: 100%;
   }
 `;
 
@@ -224,6 +265,7 @@ const PrimaryButton = styled(motion.a)`
   text-decoration: none;
   box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
   cursor: pointer;
+  border: none;
 
   @media (max-width: 768px) {
     padding: 12px 20px;
@@ -235,7 +277,7 @@ const PrimaryButton = styled(motion.a)`
   }
 `;
 
-const SecondaryButton = styled(motion.a)`
+const SecondaryButton = styled(motion.button)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -249,6 +291,7 @@ const SecondaryButton = styled(motion.a)`
   text-decoration: none;
   border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
+  font-family: inherit;
 
   @media (max-width: 768px) {
     padding: 12px 20px;
@@ -324,4 +367,22 @@ const StatusDot = styled.div`
     right: 10px;
     border-width: 3px;
   }
+`;
+
+const DownloadToast = styled(motion.div)`
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #22c55e;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
+  z-index: 1000;
 `;
