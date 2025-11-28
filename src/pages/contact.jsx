@@ -13,7 +13,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 
-const ContactPage = () => {
+const ContactCard = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -54,7 +54,9 @@ const ContactPage = () => {
             </IconWrapper>
             <InfoContent>
               <h4>Email</h4>
-              <a href="mailto:amadiamos146@gmail.com">amadiamos146@gmail.com</a>
+              <a href="mailto: amadiamos146@gmail.com">
+                amadiamos146@gmail.com
+              </a>
             </InfoContent>
           </InfoCard>
 
@@ -64,7 +66,7 @@ const ContactPage = () => {
             </IconWrapper>
             <InfoContent>
               <h4>Phone</h4>
-              <a href="tel:+2349029469247">+234 902-9469-247</a>
+              <a href="tel:+234 902-9469-247">+234 902-9469-247</a>
             </InfoContent>
           </InfoCard>
 
@@ -189,7 +191,7 @@ const ContactPage = () => {
   );
 };
 
-export default ContactPage;
+export default ContactCard;
 const Card = styled(motion.section)`
   background: linear-gradient(135deg, #1a1a24 0%, #12121a 100%);
   border-radius: 24px;

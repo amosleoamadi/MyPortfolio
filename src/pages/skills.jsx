@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-const SkillsPage = () => {
+const SkillsGrid = () => {
   const skills = [
     {
       name: "React",
@@ -97,7 +97,7 @@ const SkillsPage = () => {
   );
 };
 
-export default SkillsPage;
+export default SkillsGrid;
 const Section = styled(motion.section)`
   background: linear-gradient(135deg, #1a1a24 0%, #12121a 100%);
   border-radius: 24px;

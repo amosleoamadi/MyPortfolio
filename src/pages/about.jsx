@@ -1,166 +1,175 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { MapPin, Calendar, Briefcase } from "lucide-react";
+import { MapPin, Calendar, Briefcase, Heart } from "lucide-react";
+import { Fade, Zoom, Slide, Bounce } from "react-awesome-reveal";
 
-const AboutPage = () => {
+const AboutCard = () => {
+  const infoItems = [
+    { icon: MapPin, title: "Location", value: "Olodi-Apapa, Lagos" },
+    { icon: Calendar, title: "Experience", value: "1+ Years" },
+    { icon: Briefcase, title: "Status", value: "Open to Work" },
+    { icon: Heart, title: "Passion", value: "Building UIs" },
+  ];
+
   return (
-    <Card
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.1 }}
-    >
-      <Header>
-        <Title>About Me</Title>
-      </Header>
-      <Description>
-        I'm a frontend developer with experience building web applications. I
-        specialize in React, JavaScript, styled-components, and state management
-        with Redux. I'm passionate about creating clean, efficient code and
-        delivering exceptional user experiences.
-      </Description>
+    <Wrapper>
+      <Fade direction="up" duration={600}>
+        <Description>
+          I'm a frontend developer with experience building web applications. I
+          specialize in React, JavaScript, styled-components, and state
+          management with Redux and RTK Query. I'm passionate about creating
+          clean, efficient code and delivering exceptional user experiences that
+          make a real difference.
+        </Description>
+      </Fade>
+
       <InfoGrid>
-        <InfoItem>
-          <IconWrapper>
-            <MapPin size={18} />
-          </IconWrapper>
-          <InfoText>
-            <h4>Location</h4>
-            <p>Olodi-Apapa, Lagos</p>
-          </InfoText>
-        </InfoItem>
-        <InfoItem>
-          <IconWrapper>
-            <Calendar size={18} />
-          </IconWrapper>
-          <InfoText>
-            <h4>Experience</h4>
-            <p>6+ Months</p>
-          </InfoText>
-        </InfoItem>
-        <InfoItem>
-          <IconWrapper>
-            <Briefcase size={18} />
-          </IconWrapper>
-          <InfoText>
-            <h4>Status</h4>
-            <p>Open to Work</p>
-          </InfoText>
-        </InfoItem>
+        {infoItems.map((item, index) => (
+          <Fade
+            key={item.title}
+            direction="up"
+            delay={index * 100}
+            duration={500}
+          >
+            <InfoCard>
+              <Bounce delay={index * 150} duration={400}>
+                <IconWrapper>
+                  <item.icon size={24} />
+                </IconWrapper>
+              </Bounce>
+              <Slide direction="up" delay={index * 100 + 200} duration={400}>
+                <InfoTitle>{item.title}</InfoTitle>
+              </Slide>
+              <Fade delay={index * 100 + 300} duration={400}>
+                <InfoValue>{item.value}</InfoValue>
+              </Fade>
+            </InfoCard>
+          </Fade>
+        ))}
       </InfoGrid>
-    </Card>
+    </Wrapper>
   );
 };
 
-export default AboutPage;
+export default AboutCard;
 
-const Card = styled(motion.section)`
-  background: linear-gradient(135deg, #1a1a24 0%, #12121a 100%);
-  border-radius: 24px;
-  padding: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  margin-bottom: 24px;
-
-  @media (max-width: 768px) {
-    padding: 24px;
-    border-radius: 16px;
-    margin-bottom: 16px;
-  }
-`;
-
-const Header = styled.div`
-  margin-bottom: 24px;
-
-  @media (max-width: 768px) {
-    margin-bottom: 16px;
-  }
-`;
-
-const Title = styled.h2`
-  font-size: 24px;
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 8px;
-
-  @media (max-width: 768px) {
-    font-size: 20px;
-  }
+const Wrapper = styled.div`
+  margin-bottom: 48px;
 `;
 
 const Description = styled.p`
-  font-size: 15px;
-  color: #888;
-  line-height: 1.7;
-  margin-bottom: 24px;
+  font-size: 17px;
+  color: #999;
+  line-height: 1.8;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 40px;
 
   @media (max-width: 768px) {
-    font-size: 14px;
-    margin-bottom: 20px;
+    font-size: 15px;
+    margin-bottom: 32px;
   }
 `;
 
 const InfoGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   @media (max-width: 480px) {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 16px;
   }
 `;
 
-const InfoItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.04);
+const InfoCard = styled.div`
+  background: linear-gradient(135deg, #1a1a24 0%, #12121a 100%);
+  border-radius: 20px;
+  padding: 32px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(102, 126, 234, 0.05),
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
+
+  &:hover {
+    border-color: rgba(102, 126, 234, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+
+    &::before {
+      left: 100%;
+    }
+  }
 
   @media (max-width: 768px) {
-    padding: 14px;
-    gap: 10px;
+    padding: 24px 20px;
   }
 `;
 
 const IconWrapper = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
   background: rgba(102, 126, 234, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #667eea;
-  flex-shrink: 0;
+  margin: 0 auto 16px;
+  transition: all 0.3s ease;
+
+  ${InfoCard}:hover & {
+    background: rgba(102, 126, 234, 0.15);
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+  }
 
   @media (max-width: 768px) {
-    width: 36px;
-    height: 36px;
+    width: 50px;
+    height: 50px;
   }
 `;
 
-const InfoText = styled.div`
-  h4 {
-    font-size: 14px;
-    font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 2px;
-  }
+const InfoTitle = styled.h4`
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 6px;
+  transition: color 0.3s ease;
 
-  p {
-    font-size: 13px;
-    color: #666;
+  ${InfoCard}:hover & {
+    color: #667eea;
   }
+`;
 
-  @media (max-width: 768px) {
-    h4 {
-      font-size: 13px;
-    }
-    p {
-      font-size: 12px;
-    }
+const InfoValue = styled.p`
+  font-size: 14px;
+  color: #888;
+  transition: color 0.3s ease;
+
+  ${InfoCard}:hover & {
+    color: #ccc;
   }
 `;

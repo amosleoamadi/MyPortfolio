@@ -1,152 +1,173 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Sparkles, CheckCircle } from "lucide-react";
+import { Download, Mail, Sparkles } from "lucide-react";
+import {
+  Reveal,
+  Fade,
+  Slide,
+  Zoom,
+  Bounce,
+  JackInTheBox,
+  Roll,
+  Rotate,
+  Flip,
+} from "react-awesome-reveal";
+import myImage from "../assets/myImage.jpg";
 
-const HomePage = () => {
+const HeroSection = () => {
   const [showDownloadSuccess, setShowDownloadSuccess] = useState(false);
 
   const handleDownloadCV = () => {
-    const link = document.createElement('a');
-    link.href = '/Amadi_Amos_Leo_CV.pdf';
-    link.download = 'Amadi_Amos_Leo_CV.pdf';
+    const link = document.createElement("a");
+    link.href = "/Amadi_Amos_Leo_CV.pdf";
+    link.download = "Amadi_Amos_Leo_CV.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
+
     setShowDownloadSuccess(true);
     setTimeout(() => setShowDownloadSuccess(false), 3000);
   };
 
   return (
-    <>
-      <Card
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
+    <Section>
+      <Container>
         <Content>
-          <TextContent>
+          <Fade duration={600}>
             <Badge>
-              <Sparkles size={14} />
-              Available for work
+              <Sparkles size={16} />
+              Welcome to my portfolio
             </Badge>
+          </Fade>
+
+          <Fade delay={100} duration={600}>
             <Greeting>Hello, I'm</Greeting>
+          </Fade>
+
+          <Slide direction="up" delay={200} duration={800}>
             <Title>
               <span>Amadi Amos Leo</span>
             </Title>
+          </Slide>
+
+          <Fade delay={300} duration={600}>
             <Role>Frontend Developer</Role>
-            <Subtitle>
+          </Fade>
+
+          <Fade delay={400} duration={800}>
+            <Description>
               A passionate frontend developer specializing in React, JavaScript,
-              and modern web technologies. I create beautiful, responsive, and
-              user-friendly web applications that deliver exceptional user
+              and modern web technologies. I build beautiful, responsive, and
+              user-friendly web applications that deliver exceptional
               experiences.
-            </Subtitle>
+            </Description>
+          </Fade>
+
+          <Fade delay={500} duration={700}>
             <ButtonGroup>
               <PrimaryButton
-                href="/projects"
-                whileHover={{ scale: 1.02 }}
+                href="#contact"
+                whileHover={{
+                  scale: 1.02,
+                  boxShadow: "0 12px 40px rgba(102, 126, 234, 0.45)",
+                }}
                 whileTap={{ scale: 0.98 }}
               >
-                View My Work
-                <ArrowRight size={16} />
+                <Mail size={18} />
+                Get In Touch
               </PrimaryButton>
               <SecondaryButton
                 onClick={handleDownloadCV}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                as={motion.button}
               >
-                <Download size={16} />
+                <Download size={18} />
                 Download CV
               </SecondaryButton>
             </ButtonGroup>
-          </TextContent>
-          <AvatarWrapper
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <Avatar>AA</Avatar>
-            <StatusDot />
-          </AvatarWrapper>
-        </Content>
-      </Card>
+          </Fade>
 
-      <DownloadToast
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: showDownloadSuccess ? 1 : 0, y: showDownloadSuccess ? 0 : 50 }}
-        transition={{ duration: 0.3 }}
-      >
-        <CheckCircle size={20} />
-        CV downloaded successfully!
-      </DownloadToast>
-    </>
+          {/* Download Success Notification */}
+          {showDownloadSuccess && (
+            <Zoom duration={500}>
+              <SuccessNotification>
+                <Sparkles size={16} />
+                CV downloaded successfully!
+              </SuccessNotification>
+            </Zoom>
+          )}
+        </Content>
+
+        <ImageWrapper>
+          <JackInTheBox delay={300} duration={800}>
+            <ProfileImage>
+              <img src={myImage} alt="Amadi Amos Leo - Frontend Developer" />
+            </ProfileImage>
+          </JackInTheBox>
+
+          <Bounce delay={700} duration={600}>
+            <StatusBadge>
+              <StatusDot />
+              <StatusText>Available for work</StatusText>
+            </StatusBadge>
+          </Bounce>
+        </ImageWrapper>
+      </Container>
+    </Section>
   );
 };
 
-export default HomePage;
+export default HeroSection;
 
-const Card = styled(motion.section)`
-  background: linear-gradient(135deg, #1a1a24 0%, #12121a 100%);
-  border-radius: 24px;
-  padding: 48px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+const Section = styled.section`
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
   position: relative;
   overflow: hidden;
-  width: 100%;
-  min-height: 400px;
 
   &::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(102, 126, 234, 0.5),
-      transparent
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(
+      circle,
+      rgba(102, 126, 234, 0.08) 0%,
+      transparent 70%
     );
+    pointer-events: none;
   }
 
   @media (max-width: 768px) {
-    padding: 28px 20px;
-    border-radius: 16px;
-    width: 100%;
-    margin: 0;
+    min-height: auto;
+    padding: 60px 0;
   }
+`;
 
-  @media (max-width: 480px) {
-    border-radius: 16px;
-    padding: 24px 16px;
-    width: 100%;
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+  width: 100%;
+
+  @media (max-width: 900px) {
+    flex-direction: column-reverse;
+    gap: 40px;
+    text-align: center;
   }
 `;
 
 const Content = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
-  width: 100%;
-
-  @media (max-width: 900px) {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  @media (max-width: 768px) {
-    gap: 24px;
-    width: 100%;
-  }
-`;
-
-const TextContent = styled.div`
   flex: 1;
-  width: 100%;
+  position: relative;
 `;
 
 const Badge = styled.div`
@@ -155,35 +176,36 @@ const Badge = styled.div`
   gap: 8px;
   background: rgba(102, 126, 234, 0.1);
   border: 1px solid rgba(102, 126, 234, 0.2);
-  padding: 8px 16px;
+  padding: 10px 20px;
   border-radius: 50px;
-  font-size: 13px;
+  font-size: 14px;
   color: #667eea;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 
   @media (max-width: 768px) {
-    padding: 6px 12px;
-    font-size: 12px;
-    margin-bottom: 16px;
+    padding: 8px 16px;
+    font-size: 13px;
+    margin-bottom: 20px;
   }
 `;
 
 const Greeting = styled.span`
   display: block;
-  font-size: 18px;
+  font-size: 20px;
   color: #888;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  font-weight: 400;
 
   @media (max-width: 768px) {
-    font-size: 15px;
+    font-size: 16px;
   }
 `;
 
 const Title = styled.h1`
-  font-size: 48px;
+  font-size: 56px;
   font-weight: 700;
   color: #ffffff;
-  line-height: 1.2;
+  line-height: 1.1;
   margin-bottom: 16px;
 
   span {
@@ -194,33 +216,32 @@ const Title = styled.h1`
   }
 
   @media (max-width: 768px) {
-    font-size: 28px;
-    margin-bottom: 8px;
+    font-size: 36px;
   }
 
   @media (max-width: 480px) {
-    font-size: 24px;
+    font-size: 28px;
   }
 `;
 
 const Role = styled.h2`
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 500;
   color: #667eea;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 
   @media (max-width: 768px) {
-    font-size: 16px;
-    margin-bottom: 12px;
+    font-size: 18px;
+    margin-bottom: 16px;
   }
 `;
 
-const Subtitle = styled.p`
-  font-size: 16px;
-  color: #888;
-  line-height: 1.7;
-  max-width: 500px;
-  margin-bottom: 32px;
+const Description = styled.p`
+  font-size: 17px;
+  color: #999;
+  line-height: 1.8;
+  max-width: 520px;
+  margin-bottom: 36px;
 
   @media (max-width: 900px) {
     margin-left: auto;
@@ -228,10 +249,8 @@ const Subtitle = styled.p`
   }
 
   @media (max-width: 768px) {
-    font-size: 14px;
-    margin-bottom: 24px;
-    line-height: 1.6;
-    max-width: 100%;
+    font-size: 15px;
+    margin-bottom: 28px;
   }
 `;
 
@@ -247,7 +266,6 @@ const ButtonGroup = styled.div`
   @media (max-width: 480px) {
     flex-direction: column;
     width: 100%;
-    gap: 12px;
   }
 `;
 
@@ -255,21 +273,20 @@ const PrimaryButton = styled(motion.a)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 14px 28px;
+  padding: 16px 32px;
   border-radius: 12px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
   text-decoration: none;
-  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.35);
   cursor: pointer;
-  border: none;
 
   @media (max-width: 768px) {
-    padding: 12px 20px;
-    font-size: 13px;
+    padding: 14px 24px;
+    font-size: 14px;
   }
 
   @media (max-width: 480px) {
@@ -281,21 +298,26 @@ const SecondaryButton = styled(motion.button)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.05);
+  gap: 10px;
+  background: transparent;
   color: white;
-  padding: 14px 28px;
+  padding: 16px 32px;
   border-radius: 12px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
   text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
   font-family: inherit;
 
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
   @media (max-width: 768px) {
-    padding: 12px 20px;
-    font-size: 13px;
+    padding: 14px 24px;
+    font-size: 14px;
   }
 
   @media (max-width: 480px) {
@@ -303,86 +325,113 @@ const SecondaryButton = styled(motion.button)`
   }
 `;
 
-const AvatarWrapper = styled(motion.div)`
-  position: relative;
-  flex-shrink: 0;
+const SuccessNotification = styled.div`
+  position: absolute;
+  bottom: -80px;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  color: #22c55e;
+  margin-top: 20px;
 
   @media (max-width: 900px) {
-    order: -1;
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: 20px;
+    justify-content: center;
   }
 `;
 
-const Avatar = styled.div`
-  width: 200px;
-  height: 200px;
+const ImageWrapper = styled.div`
+  position: relative;
+  flex-shrink: 0;
+`;
+
+const ProfileImage = styled.div`
+  width: 380px;
+  height: 380px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 72px;
-  color: white;
+  overflow: hidden;
   position: relative;
   z-index: 1;
+  border: 4px solid rgba(102, 126, 234, 0.3);
+  box-shadow: 0 20px 60px rgba(102, 126, 234, 0.25);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   &::before {
     content: "";
     position: absolute;
-    inset: -4px;
+    inset: -8px;
     border-radius: 50%;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     z-index: -1;
-    opacity: 0.3;
-    filter: blur(20px);
+    opacity: 0.2;
+    filter: blur(30px);
   }
 
-  @media (max-width: 768px) {
-    width: 140px;
-    height: 140px;
-    font-size: 48px;
+  @media (max-width: 900px) {
+    width: 280px;
+    height: 280px;
   }
 
   @media (max-width: 480px) {
-    width: 120px;
-    height: 120px;
-    font-size: 40px;
+    width: 220px;
+    height: 220px;
   }
 `;
 
-const StatusDot = styled.div`
+const StatusBadge = styled.div`
   position: absolute;
-  bottom: 16px;
-  right: 16px;
-  width: 24px;
-  height: 24px;
-  background: #22c55e;
-  border-radius: 50%;
-  border: 4px solid #12121a;
-  z-index: 2;
-
-  @media (max-width: 768px) {
-    width: 20px;
-    height: 20px;
-    bottom: 10px;
-    right: 10px;
-    border-width: 3px;
-  }
-`;
-
-const DownloadToast = styled(motion.div)`
-  position: fixed;
   bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #22c55e;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 10px;
+  right: 30px;
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  background: rgba(18, 18, 26, 0.95);
+  padding: 12px 20px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 2;
+
+  @media (max-width: 900px) {
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 16px;
+  }
+`;
+
+const StatusDot = styled.span`
+  width: 10px;
+  height: 10px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+`;
+
+const StatusText = styled.span`
+  font-size: 13px;
+  color: #ffffff;
   font-weight: 500;
-  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
-  z-index: 1000;
 `;
