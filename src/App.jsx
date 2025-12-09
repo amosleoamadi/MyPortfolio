@@ -79,8 +79,8 @@ const App = () => {
               Get In <span>Touch</span>
             </SectionTitle>
             <SectionSubtitle>
-              Have a project in mind? Let's work together to bring your ideas to
-              life.
+              Have a project in mind or want to collaborate? Feel free to reach
+              out. I'm always open to discussing new opportunities.
             </SectionSubtitle>
             <ContactCard />
           </Container>

@@ -38,14 +38,6 @@ const ContactCard = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <Header>
-        <Title>Get In Touch</Title>
-        <Subtitle>
-          Have a project in mind or want to collaborate? Feel free to reach out.
-          I'm always open to discussing new opportunities.
-        </Subtitle>
-      </Header>
-
       <ContentGrid>
         <ContactInfo>
           <InfoCard whileHover={{ x: 4 }}>
