@@ -28,14 +28,6 @@ const ServicesSection = () => {
       gradient: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
       shadow: "rgba(67, 233, 123, 0.3)",
     },
-    {
-      icon: Palette,
-      title: "UI/UX Design",
-      description:
-        "Creating beautiful and intuitive user interfaces and experiences.",
-      gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
-      shadow: "rgba(250, 112, 154, 0.3)",
-    },
   ];
 
   return (

@@ -68,7 +68,7 @@ const ContactCard = () => {
             </IconWrapper>
             <InfoContent>
               <h4>Location</h4>
-              <p>Olodi-Apapa, Lagos</p>
+              <p>Lagos, Nigeria</p>
             </InfoContent>
           </InfoCard>
 
@@ -85,22 +85,13 @@ const ContactCard = () => {
                 <Github size={20} />
               </SocialLink>
               <SocialLink
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/amadi-amos-9b0261315/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Linkedin size={20} />
-              </SocialLink>
-              <SocialLink
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Twitter size={20} />
               </SocialLink>
             </SocialLinks>
           </SocialSection>

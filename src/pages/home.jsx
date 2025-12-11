@@ -83,7 +83,7 @@ const HeroSection = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <Download size={18} />
-                Download CV
+                My CV
               </SecondaryButton>
             </ButtonGroup>
           </Fade>

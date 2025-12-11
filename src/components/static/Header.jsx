@@ -115,20 +115,12 @@ const Header = () => {
               <Github size={18} />
             </SocialLink>
             <SocialLink
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/amadi-amos-9b0261315/"
               target="_blank"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
               <Linkedin size={18} />
-            </SocialLink>
-            <SocialLink
-              href="https://twitter.com"
-              target="_blank"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Twitter size={18} />
             </SocialLink>
           </SocialLinks>
 

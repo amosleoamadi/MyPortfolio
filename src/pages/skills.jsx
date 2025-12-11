@@ -6,25 +6,21 @@ const SkillsGrid = () => {
   const skills = [
     {
       name: "React",
-      level: "Intermediate",
       icon: "⚛️",
       color: "rgba(97, 218, 251, 0.15)",
     },
     {
       name: "JavaScript",
-      level: "Intermediate",
       icon: "📜",
       color: "rgba(247, 223, 30, 0.15)",
     },
     {
       name: "Redux",
-      level: "Intermediate",
       icon: "🔄",
       color: "rgba(118, 74, 188, 0.15)",
     },
     {
       name: "RTK Query",
-      level: "Intermediate",
       icon: "🔌",
       color: "rgba(118, 74, 188, 0.15)",
     },
@@ -48,7 +44,6 @@ const SkillsGrid = () => {
     },
     {
       name: "Git",
-      level: "Intermediate",
       icon: "📦",
       color: "rgba(240, 80, 51, 0.15)",
     },
@@ -89,7 +84,6 @@ const SkillsGrid = () => {
           >
             <SkillIcon color={skill.color}>{skill.icon}</SkillIcon>
             <SkillName>{skill.name}</SkillName>
-            <SkillLevel>{skill.level}</SkillLevel>
           </SkillCard>
         ))}
       </Grid>

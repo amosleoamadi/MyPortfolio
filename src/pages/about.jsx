@@ -6,7 +6,7 @@ import { Fade, Zoom, Slide, Bounce } from "react-awesome-reveal";
 
 const AboutCard = () => {
   const infoItems = [
-    { icon: MapPin, title: "Location", value: "Olodi-Apapa, Lagos" },
+    { icon: MapPin, title: "Location", value: "Lagos, Nigeria" },
     { icon: Calendar, title: "Experience", value: "1+ Years" },
     { icon: Briefcase, title: "Status", value: "Open to Work" },
     { icon: Heart, title: "Passion", value: "Building UIs" },

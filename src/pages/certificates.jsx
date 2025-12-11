@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Award, ExternalLink, Calendar } from "lucide-react";
 import { Fade, Zoom, Slide, Bounce } from "react-awesome-reveal";
+import cert from "../assets/myImage.jpg";
 
 const CertificatesCard = () => {
   const certificates = [
@@ -13,7 +14,7 @@ const CertificatesCard = () => {
       description:
         "Comprehensive frontend development program covering modern web technologies including React, JavaScript, and responsive design principles. Focused on building real-world projects and industry-ready skills.",
       gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-      certificateUrl: "#", // Add your actual certificate URL here
+      certificateUrl: cert, // Add your actual certificate URL here
     },
   ];
 
