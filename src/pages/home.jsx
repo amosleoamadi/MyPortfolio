@@ -20,14 +20,14 @@ const HeroSection = () => {
 
   const handleDownloadCV = () => {
     const link = document.createElement("a");
-    link.href = "/Amadi_Amos_Leo_CV.pdf";
-    link.download = "Amadi_Amos_Leo_CV.pdf";
+    link.href = "/My_Resume.pdf";
+    link.download = "My_Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
 
     setShowDownloadSuccess(true);
-    setTimeout(() => setShowDownloadSuccess(false), 3000);
+    setTimeout(() => setShowDownloadSuccess(false), 5000);
   };
 
   return (
@@ -83,7 +83,7 @@ const HeroSection = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <Download size={18} />
-                My CV
+                My Resume
               </SecondaryButton>
             </ButtonGroup>
           </Fade>
