@@ -7,7 +7,7 @@ const StatsSection = () => {
   const stats = [
     {
       icon: Briefcase,
-      value: "3+",
+      value: "5+",
       label: "Projects Completed",
       gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     },

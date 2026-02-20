@@ -2,18 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Download, Mail, Sparkles } from "lucide-react";
-import {
-  Reveal,
-  Fade,
-  Slide,
-  Zoom,
-  Bounce,
-  JackInTheBox,
-  Roll,
-  Rotate,
-  Flip,
-} from "react-awesome-reveal";
-import myImage from "../assets/myImage.jpg";
+import { Fade, Slide, Zoom, Bounce, JackInTheBox } from "react-awesome-reveal";
+import myImage from "../assets/professionalImage.jpeg";
 
 const HeroSection = () => {
   const [showDownloadSuccess, setShowDownloadSuccess] = useState(false);
@@ -83,7 +73,7 @@ const HeroSection = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <Download size={18} />
-                My Resume
+                My CV
               </SecondaryButton>
             </ButtonGroup>
           </Fade>

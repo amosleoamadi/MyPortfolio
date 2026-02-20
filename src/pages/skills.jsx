@@ -1,50 +1,59 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { DiReact, DiJavascript1, DiCss3, DiHtml5, DiGit } from "react-icons/di";
+import { SiRedux, SiStyledcomponents } from "react-icons/si";
+import { TbPlug } from "react-icons/tb";
+import { BiLogoTypescript } from "react-icons/bi";
 
 const SkillsGrid = () => {
   const skills = [
     {
       name: "React",
-      icon: "⚛️",
+      icon: <DiReact />,
       color: "rgba(97, 218, 251, 0.15)",
     },
     {
       name: "JavaScript",
-      icon: "📜",
+      icon: <DiJavascript1 />,
+      color: "rgba(247, 223, 30, 0.15)",
+    },
+    {
+      name: "TypeScript",
+      icon: <BiLogoTypescript />,
       color: "rgba(247, 223, 30, 0.15)",
     },
     {
       name: "Redux",
-      icon: "🔄",
+      icon: <SiRedux />,
       color: "rgba(118, 74, 188, 0.15)",
     },
     {
       name: "RTK Query",
-      icon: "🔌",
+      icon: <TbPlug />,
       color: "rgba(118, 74, 188, 0.15)",
     },
     {
       name: "Styled Components",
       level: "Advanced",
-      icon: "💅",
+      icon: <SiStyledcomponents />,
       color: "rgba(219, 112, 147, 0.15)",
     },
     {
       name: "CSS",
       level: "Advanced",
-      icon: "🎨",
+      icon: <DiCss3 />,
       color: "rgba(38, 77, 228, 0.15)",
     },
     {
       name: "HTML",
       level: "Expert",
-      icon: "📄",
+      icon: <DiHtml5 />,
       color: "rgba(227, 79, 38, 0.15)",
     },
     {
       name: "Git",
-      icon: "📦",
+      icon: <DiGit />,
       color: "rgba(240, 80, 51, 0.15)",
     },
   ];
@@ -63,6 +72,7 @@ const SkillsGrid = () => {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
   };
+
   return (
     <Section
       initial={{ opacity: 0, y: 20 }}
@@ -84,6 +94,7 @@ const SkillsGrid = () => {
           >
             <SkillIcon color={skill.color}>{skill.icon}</SkillIcon>
             <SkillName>{skill.name}</SkillName>
+            {skill.level && <SkillLevel>{skill.level}</SkillLevel>}
           </SkillCard>
         ))}
       </Grid>
@@ -92,6 +103,7 @@ const SkillsGrid = () => {
 };
 
 export default SkillsGrid;
+
 const Section = styled(motion.section)`
   background: linear-gradient(135deg, #1a1a24 0%, #12121a 100%);
   border-radius: 24px;
@@ -157,13 +169,24 @@ const SkillIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 28px;
+  color: white;
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
 
   @media (max-width: 768px) {
     width: 40px;
     height: 40px;
-    font-size: 20px;
+    font-size: 24px;
     margin-bottom: 10px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
   }
 `;
 

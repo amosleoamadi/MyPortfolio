@@ -1,26 +1,32 @@
 import React from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
-import { MapPin, Calendar, Briefcase, Heart } from "lucide-react";
+import { MapPin, Calendar, Briefcase, Heart, Code2 } from "lucide-react";
 import { Fade, Zoom, Slide, Bounce } from "react-awesome-reveal";
 
 const AboutCard = () => {
   const infoItems = [
     { icon: MapPin, title: "Location", value: "Lagos, Nigeria" },
-    { icon: Calendar, title: "Experience", value: "1+ Years" },
     { icon: Briefcase, title: "Status", value: "Open to Work" },
     { icon: Heart, title: "Passion", value: "Building UIs" },
+    {
+      icon: Code2,
+      title: "Specialty",
+      value: "React & TypeScript Development",
+    },
   ];
 
   return (
     <Wrapper>
       <Fade direction="up" duration={600}>
         <Description>
-          I'm a frontend developer with experience building web applications. I
-          specialize in React, JavaScript, styled-components, and state
-          management with Redux and RTK Query. I'm passionate about creating
-          clean, efficient code and delivering exceptional user experiences that
-          make a real difference.
+          I’m a frontend developer specializing in building scalable web
+          applications using React, JavaScript, and TypeScript. I work
+          extensively with modern state management tools like Redux Toolkit and
+          RTK Query, and I use styled-components and Tailwind CSS to craft
+          clean, responsive interfaces. I'm passionate about writing
+          maintainable, efficient code and creating seamless user experiences
+          that are both performant and impactful. My focus is on building
+          structured, scalable systems that solve real-world problems
         </Description>
       </Fade>
 

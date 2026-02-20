@@ -7,6 +7,8 @@ import {
   Utensils,
   ExternalLink,
   Github,
+  ChefHat,
+  CreditCard,
 } from "lucide-react";
 import { Fade, Zoom, Slide, Bounce, Flip } from "react-awesome-reveal";
 
@@ -26,39 +28,72 @@ const ProjectsGrid = () => {
       gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
       icon: Globe,
       liveLink: "https://amos-portfolio-five.vercel.app/contact",
-      githubLink: "", // Add GitHub link if available
+      githubLink: "",
     },
+
     {
       title: "Donation & Fundraising Web App",
       description:
-        "A platform where students can request donations and manage fundraising campaigns. Includes user authentication and campaign management features.",
+        "A platform where students can request donations and manage fundraising campaigns. Includes authentication, campaign management, and real-time updates.",
       features: [
         "User login & registration",
         "Campaign dashboard",
         "Withdrawal request system",
         "Real-time donation tracking",
       ],
-      tags: ["React", "Redux", "RTK Query", "Styled Components"],
+      tags: ["React", "Redux Toolkit", "RTK Query", "Styled Components"],
       gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
       icon: DollarSign,
       liveLink: "https://edu-fund-gamma.vercel.app",
-      githubLink: "", // Add GitHub link if available
+      githubLink: "",
     },
     {
-      title: "QuickChow Food Platform",
+      title: "QuickLah Food Platform",
       description:
-        "A modern food delivery platform that connects users with local restaurants. Features menu browsing, order tracking, and secure payment processing.",
+        "A modern food delivery platform that connects users with local restaurants. Features dynamic menu browsing, cart management, and seamless ordering experience.",
       features: [
         "Restaurant and menu browsing",
-        "Food search and filtering",
+        "Dynamic cart functionality",
         "Order tracking system",
-        "Secure payment integration",
+        "API integration for food data",
       ],
-      tags: ["React", "JavaScript", "CSS", "API Integration"],
+      tags: ["React", "TypeScript", "Context API", "API Integration"],
       gradient: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
       icon: Utensils,
-      liveLink: "", // Add live link if available
-      githubLink: "https://github.com/amosleoamadi/QUICKCHOW-PROJECT",
+      liveLink: "https://quicklah.vercel.app",
+      githubLink: "",
+    },
+    {
+      title: "EasyTranz Payment Platform",
+      description:
+        "A cross-border payment web application that enables freelancers in Nigeria to receive payments from clients abroad using CashApp, Zelle, and other supported methods.",
+      features: [
+        "Multi-payment method integration (CashApp, Zelle)",
+        "Secure transaction processing",
+        "User dashboard with payment tracking",
+        "Type-safe architecture with TypeScript",
+      ],
+      tags: ["React", "TypeScript", "Tailwind CSS", "Axios", "Secure Payments"],
+      gradient: "linear-gradient(135deg, #ff9966 0%, #ff5e62 100%)",
+      icon: CreditCard,
+      liveLink: "eazytranz.com",
+      githubLink: "",
+    },
+    {
+      title: "Chizzy Restaurant Web App",
+      description:
+        "A restaurant ordering and management platform developed during my internship. Built with TypeScript, featuring structured components, menu management, and optimized UI performance.",
+      features: [
+        "Interactive food menu system",
+        "Responsive UI with modern design",
+        "Reusable TypeScript interfaces",
+        "Clean and scalable component structure",
+      ],
+      tags: ["React", "TypeScript", "Tailwind CSS"],
+      gradient: "linear-gradient(135deg, #f7971e 0%, #ffd200 100%)",
+      icon: ChefHat,
+      liveLink: "https://trueminds-project.vercel.app/",
+      githubLink: "",
     },
   ];
 
