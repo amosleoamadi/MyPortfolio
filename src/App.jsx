@@ -1,11 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import router from "./router/Router";
 import Header from "./components/static/Header";
 import HeroSection from "./pages/home";
-import StatsSection from "./pages/stat";
 import AboutCard from "./pages/about";
-import ServicesSection from "./pages/services";
 import SkillsGrid from "./pages/skills";
 import ProjectsGrid from "./pages/projects";
 import CertificatesCard from "./pages/certificates";
@@ -19,7 +16,6 @@ const App = () => {
         <section id="home">
           <Container>
             <HeroSection />
-            <StatsSection />
           </Container>
         </section>
 
@@ -33,7 +29,6 @@ const App = () => {
               me as a developer.
             </SectionSubtitle>
             <AboutCard />
-            <ServicesSection />
           </Container>
         </Section>
 

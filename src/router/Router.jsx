@@ -6,7 +6,6 @@ import SkillsPage from "../pages/skills";
 import ProjectsPage from "../pages/projects";
 import CertificatesPage from "../pages/certificates";
 import ContactPage from "../pages/contact";
-import Services from "../pages/services";
 
 const router = createBrowserRouter([
   {
@@ -28,10 +27,6 @@ const router = createBrowserRouter([
       {
         path: "projects",
         element: <ProjectsPage />,
-      },
-      {
-        path: "services",
-        element: <Services />,
       },
       {
         path: "contact",

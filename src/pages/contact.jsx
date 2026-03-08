@@ -11,27 +11,66 @@ import {
   Linkedin,
   Twitter,
   CheckCircle,
+  AlertCircle,
 } from "lucide-react";
+import axios from "axios";
 
 const ContactCard = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    fullname: "",
+    clientEmail: "",
     subject: "",
     message: "",
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
+  const BaseUrl = import.meta.env.VITE_BASE_URL;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      // Add your email to the data being sent
+      const emailData = {
+        ...formData,
+        myEmail: "amadiamos146@gmail.com",
+      };
+
+      await axios.post(`${BaseUrl}/email`, emailData);
+
+      // Set success status
+      setSubmitStatus("success");
+
+      // Clear form after successful submission
+      setFormData({
+        fullname: "",
+        clientEmail: "",
+        subject: "",
+        message: "",
+      });
+
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 3000);
+    } catch (error) {
+      console.error("Error sending email:", error);
+      setSubmitStatus("error");
+
+      // Auto-hide error message after 3 seconds
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 3000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
   return (
     <Card
       initial={{ opacity: 0, y: 20 }}
@@ -46,9 +85,7 @@ const ContactCard = () => {
             </IconWrapper>
             <InfoContent>
               <h4>Email</h4>
-              <a href="mailto: amadiamos146@gmail.com">
-                amadiamos146@gmail.com
-              </a>
+              <a href="mailto:amadiamos146@gmail.com">amadiamos146@gmail.com</a>
             </InfoContent>
           </InfoCard>
 
@@ -58,7 +95,7 @@ const ContactCard = () => {
             </IconWrapper>
             <InfoContent>
               <h4>Phone</h4>
-              <a href="tel:+234 902-9469-247">+234 902-9469-247</a>
+              <a href="tel:+2349029469247">+234 902-9469-247</a>
             </InfoContent>
           </InfoCard>
 
@@ -104,11 +141,12 @@ const ContactCard = () => {
               <Input
                 type="text"
                 id="name"
-                name="name"
+                name="fullname"
                 placeholder="John Doe"
-                value={formData.name}
+                value={formData.fullname}
                 onChange={handleChange}
                 required
+                disabled={isSubmitting}
               />
             </FormGroup>
             <FormGroup>
@@ -116,11 +154,12 @@ const ContactCard = () => {
               <Input
                 type="email"
                 id="email"
-                name="email"
+                name="clientEmail"
                 placeholder="john@example.com"
-                value={formData.email}
+                value={formData.clientEmail}
                 onChange={handleChange}
                 required
+                disabled={isSubmitting}
               />
             </FormGroup>
           </FormRow>
@@ -135,6 +174,7 @@ const ContactCard = () => {
               value={formData.subject}
               onChange={handleChange}
               required
+              disabled={isSubmitting}
             />
           </FormGroup>
 
@@ -147,27 +187,41 @@ const ContactCard = () => {
               value={formData.message}
               onChange={handleChange}
               required
+              disabled={isSubmitting}
             />
           </FormGroup>
 
-          {isSubmitted ? (
+          {submitStatus === "success" && (
             <SuccessMessage
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
             >
               <CheckCircle size={20} />
               Message sent successfully! I'll get back to you soon.
             </SuccessMessage>
-          ) : (
-            <SubmitButton
-              type="submit"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Send size={18} />
-              Send Message
-            </SubmitButton>
           )}
+
+          {submitStatus === "error" && (
+            <ErrorMessage
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+            >
+              <AlertCircle size={20} />
+              Failed to send message. Please try again.
+            </ErrorMessage>
+          )}
+
+          <SubmitButton
+            type="submit"
+            whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+            whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+            disabled={isSubmitting}
+          >
+            <Send size={18} />
+            {isSubmitting ? "Sending..." : "Send Message"}
+          </SubmitButton>
         </ContactForm>
       </ContentGrid>
     </Card>
@@ -175,6 +229,7 @@ const ContactCard = () => {
 };
 
 export default ContactCard;
+
 const Card = styled(motion.section)`
   background: linear-gradient(135deg, #1a1a24 0%, #12121a 100%);
   border-radius: 24px;
@@ -398,6 +453,11 @@ const Input = styled.input`
     color: #555;
   }
 
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   @media (max-width: 768px) {
     padding: 12px 14px;
   }
@@ -423,6 +483,11 @@ const TextArea = styled.textarea`
 
   &::placeholder {
     color: #555;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 
   @media (max-width: 768px) {
@@ -467,5 +532,17 @@ const SuccessMessage = styled(motion.div)`
   border: 1px solid rgba(34, 197, 94, 0.2);
   border-radius: 12px;
   color: #22c55e;
+  font-size: 14px;
+`;
+
+const ErrorMessage = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 12px;
+  color: #ef4444;
   font-size: 14px;
 `;
