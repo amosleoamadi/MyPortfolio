@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import {
-  Download,
-  Mail,
-  Sparkles,
-  ArrowRight,
-  Code,
-  Zap,
-  Award,
-} from "lucide-react";
+import { Download, Mail, Sparkles, ArrowRight, Code, Zap } from "lucide-react";
 import {
   Fade,
   Slide,
@@ -25,8 +17,8 @@ const HeroSection = () => {
 
   const handleDownloadCV = () => {
     const link = document.createElement("a");
-    link.href = "/My_Resume.pdf";
-    link.download = "My_Resume.pdf";
+    link.href = "/amos_Frontend_Engineer_CV.pdf";
+    link.download = "amos_Frontend_Engineer_CV.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -139,17 +131,6 @@ const HeroSection = () => {
               <ImageGlow />
             </ProfileImageContainer>
           </JackInTheBox>
-
-          {/* Experience Badge - Adjusted positioning for mobile */}
-          <Rotate delay={500} duration={800} triggerOnce>
-            <ExperienceBadge className="experience-badge">
-              <Award size={20} />
-              <div>
-                <strong>3+ Years</strong>
-                <span>Experience</span>
-              </div>
-            </ExperienceBadge>
-          </Rotate>
 
           <Bounce delay={700} duration={600} triggerOnce>
             <StatusBadge>
@@ -620,77 +601,6 @@ const ImageGlow = styled.div`
   );
   filter: blur(40px);
   z-index: 0;
-`;
-
-const ExperienceBadge = styled(motion.div)`
-  position: absolute;
-  top: 30px;
-  left: -30px;
-  background: linear-gradient(135deg, #1a1a28 0%, #12121a 100%);
-  border: 1px solid rgba(102, 126, 234, 0.2);
-  padding: 12px 20px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  z-index: 3;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-
-  div {
-    display: flex;
-    flex-direction: column;
-  }
-
-  strong {
-    font-size: 16px;
-    color: #ffffff;
-    font-weight: 700;
-  }
-
-  span {
-    font-size: 12px;
-    color: #999;
-  }
-
-  svg {
-    color: #667eea;
-  }
-
-  @media (max-width: 1024px) {
-    top: 20px;
-    left: -20px;
-    padding: 10px 18px;
-  }
-
-  @media (max-width: 900px) {
-    top: 10px;
-    left: 10px; /* Changed position on mobile to avoid covering image */
-    padding: 8px 16px;
-
-    strong {
-      font-size: 14px;
-    }
-
-    span {
-      font-size: 11px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    top: 5px;
-    left: 5px;
-    padding: 6px 12px;
-    gap: 8px;
-
-    strong {
-      font-size: 13px;
-    }
-
-    span {
-      font-size: 10px;
-    }
-  }
 `;
 
 const StatusBadge = styled(motion.div)`
