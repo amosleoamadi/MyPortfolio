@@ -3,158 +3,207 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Award, ExternalLink, Calendar } from "lucide-react";
 import { Fade, Zoom, Slide, Bounce } from "react-awesome-reveal";
-import cert from "../assets/myImage.jpg";
+import cert from "../assets/thecurve.jpeg";
+import trueminds from "../assets/trueminds.jpeg";
 
 const CertificatesCard = () => {
   const certificates = [
     {
       title: "Frontend Development Program",
       issuer: "The Curve Africa",
-      date: "2024",
+      date: "2025",
       description:
         "Comprehensive frontend development program covering modern web technologies including React, JavaScript, and responsive design principles. Focused on building real-world projects and industry-ready skills.",
       gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-      certificateUrl: cert, // Add your actual certificate URL here
+      certificateUrl: cert,
+    },
+    {
+      title: "Front-End Development Internship",
+      issuer: "Trueminds Innovation",
+      date: "2026",
+      description:
+        "Intensive internship program focused on front-end web development. Gained hands-on experience building scalable applications using React, and TypeScript. Collaborated on real-world projects and contributed to production-grade codebases.",
+      gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+      certificateUrl: trueminds,
     },
   ];
 
   return (
     <Section>
-      <Fade direction="up" duration={600} triggerOnce>
-        <Header>
-          <Title>Certifications</Title>
-          <Subtitle>
-            Professional certifications and courses I've completed
-          </Subtitle>
-        </Header>
-      </Fade>
+      <Container>
+        <Fade direction="up" duration={600} triggerOnce>
+          <Header>
+            <Title>Certifications</Title>
+            <Subtitle>
+              Professional certifications and courses I've completed
+            </Subtitle>
+          </Header>
+        </Fade>
 
-      <Grid>
-        {certificates.map((cert, index) => (
-          <Fade
-            key={cert.title}
-            direction="up"
-            delay={index * 100}
-            duration={600}
-            triggerOnce
-          >
-            <CertCard whileHover={{ y: -4 }}>
-              <CertHeader>
-                <Zoom delay={index * 150} duration={500} triggerOnce>
-                  <IconWrapper gradient={cert.gradient}>
-                    <Award size={22} />
-                  </IconWrapper>
-                </Zoom>
-                <CertInfo>
-                  <Slide
-                    direction="up"
-                    delay={index * 100 + 200}
-                    duration={400}
-                    triggerOnce
-                  >
-                    <CertTitle>{cert.title}</CertTitle>
-                  </Slide>
-                  <Fade delay={index * 100 + 300} duration={400} triggerOnce>
-                    <CertIssuer>{cert.issuer}</CertIssuer>
-                  </Fade>
-                </CertInfo>
-              </CertHeader>
+        <Grid>
+          {certificates.map((cert, index) => (
+            <Fade
+              key={cert.title}
+              direction="up"
+              delay={index * 100}
+              duration={600}
+              triggerOnce
+            >
+              <CertCard whileHover={{ y: -4 }}>
+                <CertHeader>
+                  <Zoom delay={index * 150} duration={500} triggerOnce>
+                    <IconWrapper gradient={cert.gradient}>
+                      <Award size={22} />
+                    </IconWrapper>
+                  </Zoom>
+                  <CertInfo>
+                    <Slide
+                      direction="up"
+                      delay={index * 100 + 200}
+                      duration={400}
+                      triggerOnce
+                    >
+                      <CertTitle>{cert.title}</CertTitle>
+                    </Slide>
+                    <Fade delay={index * 100 + 300} duration={400} triggerOnce>
+                      <CertIssuer>{cert.issuer}</CertIssuer>
+                    </Fade>
+                  </CertInfo>
+                </CertHeader>
 
-              <Bounce delay={index * 100 + 400} duration={400} triggerOnce>
-                <CertDate>
-                  <Calendar size={12} />
-                  {cert.date}
-                </CertDate>
-              </Bounce>
+                <Bounce delay={index * 100 + 400} duration={400} triggerOnce>
+                  <CertDate>
+                    <Calendar size={12} />
+                    {cert.date}
+                  </CertDate>
+                </Bounce>
 
-              <Fade delay={index * 100 + 500} duration={400} triggerOnce>
-                <CertDescription>{cert.description}</CertDescription>
-              </Fade>
+                <Fade delay={index * 100 + 500} duration={400} triggerOnce>
+                  <CertDescription>{cert.description}</CertDescription>
+                </Fade>
 
-              <Slide
-                direction="up"
-                delay={index * 100 + 600}
-                duration={400}
-                triggerOnce
-              >
-                <ViewButton
-                  href={cert.certificateUrl}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Slide
+                  direction="up"
+                  delay={index * 100 + 600}
+                  duration={400}
+                  triggerOnce
                 >
-                  <ExternalLink size={14} />
-                  View Certificate
-                </ViewButton>
-              </Slide>
-            </CertCard>
-          </Fade>
-        ))}
-      </Grid>
+                  <ViewButton
+                    href={cert.certificateUrl}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLink size={14} />
+                    View Certificate
+                  </ViewButton>
+                </Slide>
+              </CertCard>
+            </Fade>
+          ))}
+        </Grid>
+      </Container>
     </Section>
   );
 };
 
 export default CertificatesCard;
 
+// ========== STYLED COMPONENTS (refactored for clarity & responsiveness) ==========
+
 const Section = styled.section`
   background: linear-gradient(135deg, #1a1a24 0%, #12121a 100%);
   border-radius: 24px;
-  padding: 40px;
+  padding: 40px 0;
   border: 1px solid rgba(255, 255, 255, 0.06);
+  width: 100%;
+  overflow: hidden;
 
   @media (max-width: 768px) {
-    padding: 24px;
+    padding: 32px 0;
     border-radius: 16px;
   }
 `;
 
-const Header = styled.div`
-  margin-bottom: 32px;
+const Container = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+
+  @media (max-width: 1024px) {
+    padding: 0 32px;
+  }
 
   @media (max-width: 768px) {
-    margin-bottom: 24px;
+    padding: 0 24px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 16px;
+  }
+`;
+
+const Header = styled.div`
+  margin-bottom: 40px;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    margin-bottom: 32px;
   }
 `;
 
 const Title = styled.h2`
-  font-size: 24px;
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 8px;
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff 0%, #e0e0ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
 
   @media (max-width: 768px) {
-    font-size: 20px;
+    font-size: 24px;
   }
 `;
 
 const Subtitle = styled.p`
-  font-size: 14px;
+  font-size: 15px;
   color: #888;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 24px;
   justify-items: center;
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 `;
 
 const CertCard = styled(motion.div)`
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 16px;
-  padding: 32px;
-  transition: all 0.3s ease;
-  max-width: 400px;
+  border-radius: 20px;
+  padding: 28px;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   width: 100%;
+  max-width: 420px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   &::before {
     content: "";
@@ -166,17 +215,18 @@ const CertCard = styled(motion.div)`
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(102, 126, 234, 0.05),
+      rgba(102, 126, 234, 0.08),
       transparent
     );
     transition: left 0.6s ease;
+    pointer-events: none;
   }
 
   &:hover {
     border-color: rgba(102, 126, 234, 0.3);
     background: rgba(102, 126, 234, 0.05);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 
     &::before {
       left: 100%;
@@ -196,15 +246,15 @@ const CertHeader = styled.div`
   margin-bottom: 20px;
 
   @media (max-width: 768px) {
-    gap: 12px;
-    margin-bottom: 16px;
+    gap: 14px;
+    margin-bottom: 18px;
   }
 `;
 
 const IconWrapper = styled.div`
   width: 48px;
   height: 48px;
-  border-radius: 12px;
+  border-radius: 14px;
   background: ${(props) =>
     props.gradient || "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"};
   display: flex;
@@ -215,12 +265,12 @@ const IconWrapper = styled.div`
   transition: all 0.3s ease;
 
   ${CertCard}:hover & {
-    transform: scale(1.05) rotate(5deg);
+    transform: scale(1.08) rotate(4deg);
   }
 
   @media (max-width: 768px) {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
   }
 `;
 
@@ -234,7 +284,7 @@ const CertTitle = styled.h3`
   color: #ffffff;
   margin-bottom: 6px;
   line-height: 1.4;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 
   ${CertCard}:hover & {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -244,7 +294,7 @@ const CertTitle = styled.h3`
   }
 
   @media (max-width: 768px) {
-    font-size: 16px;
+    font-size: 17px;
   }
 `;
 
@@ -255,7 +305,7 @@ const CertIssuer = styled.p`
   transition: color 0.3s ease;
 
   ${CertCard}:hover & {
-    color: #764ba2;
+    color: #8b7bff;
   }
 
   @media (max-width: 768px) {
@@ -264,7 +314,7 @@ const CertIssuer = styled.p`
 `;
 
 const CertDate = styled.div`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
   font-size: 13px;
@@ -287,7 +337,8 @@ const CertDescription = styled.p`
   font-size: 14px;
   color: #888;
   line-height: 1.6;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  flex-grow: 1;
   transition: color 0.3s ease;
 
   ${CertCard}:hover & {
@@ -296,32 +347,35 @@ const CertDescription = styled.p`
 
   @media (max-width: 768px) {
     font-size: 13px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
 `;
 
 const ViewButton = styled(motion.a)`
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   font-size: 14px;
-  color: #667eea;
+  color: #fff;
   text-decoration: none;
-  padding: 10px 18px;
-  border-radius: 10px;
-  background: rgba(102, 126, 234, 0.1);
+  padding: 10px 20px;
+  border-radius: 40px;
+  background: rgba(102, 126, 234, 0.15);
   transition: all 0.3s ease;
   font-weight: 500;
-  border: 1px solid rgba(102, 126, 234, 0.2);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  width: fit-content;
 
   &:hover {
-    background: rgba(102, 126, 234, 0.2);
+    background: rgba(102, 126, 234, 0.3);
     color: #ffffff;
-    border-color: rgba(102, 126, 234, 0.4);
+    border-color: rgba(102, 126, 234, 0.6);
+    transform: translateY(-2px);
   }
 
   @media (max-width: 768px) {
     font-size: 13px;
-    padding: 8px 16px;
+    padding: 8px 18px;
   }
 `;

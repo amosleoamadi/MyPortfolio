@@ -8,6 +8,8 @@ import {
   DiHtml5,
   DiGit,
   DiNodejsSmall,
+  DiPython,
+  DiMongodb,
 } from "react-icons/di";
 import {
   SiRedux,
@@ -15,14 +17,20 @@ import {
   SiTailwindcss,
   SiAxios,
   SiReactquery,
+  SiDjango,
+  SiFastapi,
+  SiExpress,
+  SiPostgresql,
+  SiTypescript,
 } from "react-icons/si";
 import { TbPlug, TbBrandFramerMotion } from "react-icons/tb";
 import { BiLogoTypescript } from "react-icons/bi";
 import { VscJson } from "react-icons/vsc";
-import { Fade, Zoom, Slide, Bounce } from "react-awesome-reveal";
+import { Fade, Zoom, Slide } from "react-awesome-reveal";
 
 const SkillsGrid = () => {
   const skills = [
+    // Frontend
     {
       name: "React",
       icon: <DiReact />,
@@ -31,15 +39,8 @@ const SkillsGrid = () => {
       proficiency: 95,
     },
     {
-      name: "JavaScript",
-      icon: <DiJavascript1 />,
-      color: "rgba(247, 223, 30, 0.15)",
-      category: "Language",
-      proficiency: 90,
-    },
-    {
       name: "TypeScript",
-      icon: <BiLogoTypescript />,
+      icon: <SiTypescript />,
       color: "rgba(49, 120, 198, 0.15)",
       category: "Language",
       proficiency: 85,
@@ -63,28 +64,87 @@ const SkillsGrid = () => {
       icon: <SiReactquery />,
       color: "rgba(255, 65, 84, 0.15)",
       category: "Data Fetching",
-      proficiency: 75,
-    },
-    {
-      name: "Styled Components",
-      icon: <SiStyledcomponents />,
-      color: "rgba(219, 112, 147, 0.15)",
-      category: "Styling",
-      proficiency: 90,
+      proficiency: 80,
     },
     {
       name: "Tailwind CSS",
       icon: <SiTailwindcss />,
       color: "rgba(6, 182, 212, 0.15)",
       category: "Styling",
-      proficiency: 88,
+      proficiency: 90,
     },
     {
-      name: "CSS3",
-      icon: <DiCss3 />,
-      color: "rgba(38, 77, 228, 0.15)",
-      category: "Styling",
+      name: "Framer Motion",
+      icon: <TbBrandFramerMotion />,
+      color: "rgba(187, 134, 252, 0.15)",
+      category: "Animation",
+      proficiency: 80,
+    },
+    // Backend & APIs
+    {
+      name: "Node.js",
+      icon: <DiNodejsSmall />,
+      color: "rgba(104, 160, 99, 0.15)",
+      category: "Backend",
       proficiency: 85,
+    },
+    {
+      name: "Express.js",
+      icon: <SiExpress />,
+      color: "rgba(0, 0, 0, 0.15)",
+      category: "Backend",
+      proficiency: 85,
+    },
+    {
+      name: "Python",
+      icon: <DiPython />,
+      color: "rgba(53, 114, 165, 0.15)",
+      category: "Language",
+      proficiency: 80,
+    },
+    {
+      name: "FastAPI",
+      icon: <SiFastapi />,
+      color: "rgba(0, 150, 136, 0.15)",
+      category: "Backend",
+      proficiency: 75,
+    },
+    {
+      name: "Django",
+      icon: <SiDjango />,
+      color: "rgba(44, 83, 50, 0.15)",
+      category: "Backend",
+      proficiency: 70,
+    },
+    {
+      name: "REST APIs",
+      icon: <VscJson />,
+      color: "rgba(102, 126, 234, 0.15)",
+      category: "Integration",
+      proficiency: 90,
+    },
+    // Databases
+    {
+      name: "MySQL",
+      icon: <SiPostgresql />,
+      color: "rgba(51, 103, 145, 0.15)",
+      category: "Databases",
+      proficiency: 80,
+    },
+    {
+      name: "MongoDB",
+      icon: <DiMongodb />,
+      color: "rgba(72, 158, 73, 0.15)",
+      category: "Databases",
+      proficiency: 75,
+    },
+    // Others
+    {
+      name: "JavaScript",
+      icon: <DiJavascript1 />,
+      color: "rgba(247, 223, 30, 0.15)",
+      category: "Language",
+      proficiency: 90,
     },
     {
       name: "HTML5",
@@ -94,18 +154,11 @@ const SkillsGrid = () => {
       proficiency: 95,
     },
     {
-      name: "Git",
-      icon: <DiGit />,
-      color: "rgba(240, 80, 51, 0.15)",
-      category: "Version Control",
+      name: "CSS3",
+      icon: <DiCss3 />,
+      color: "rgba(38, 77, 228, 0.15)",
+      category: "Styling",
       proficiency: 85,
-    },
-    {
-      name: "Framer Motion",
-      icon: <TbBrandFramerMotion />,
-      color: "rgba(187, 134, 252, 0.15)",
-      category: "Animation",
-      proficiency: 75,
     },
     {
       name: "Axios",
@@ -115,34 +168,28 @@ const SkillsGrid = () => {
       proficiency: 85,
     },
     {
-      name: "REST APIs",
-      icon: <VscJson />,
-      color: "rgba(102, 126, 234, 0.15)",
-      category: "Integration",
-      proficiency: 88,
-    },
-    {
-      name: "Node.js",
-      icon: <DiNodejsSmall />,
-      color: "rgba(104, 160, 99, 0.15)",
-      category: "Build Tools",
-      proficiency: 70,
+      name: "Git",
+      icon: <DiGit />,
+      color: "rgba(240, 80, 51, 0.15)",
+      category: "Version Control",
+      proficiency: 85,
     },
   ];
 
-  // Group skills by category - reorder categories for better flow
+  // Category order – no DevOps or GraphQL
   const categoryOrder = [
     "Frontend",
+    "Backend",
     "Language",
     "State Management",
     "Data Fetching",
+    "Integration",
+    "Databases",
     "Styling",
     "Markup",
     "Animation",
     "HTTP Client",
-    "Integration",
     "Version Control",
-    "Build Tools",
   ];
 
   // Group skills by category
@@ -154,7 +201,6 @@ const SkillsGrid = () => {
     return acc;
   }, {});
 
-  // Sort categories according to the defined order
   const sortedCategories = categoryOrder.filter((cat) => categories[cat]);
 
   const containerVariants = {
@@ -178,7 +224,6 @@ const SkillsGrid = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Background decorative elements - scaled for better performance */}
       <BackgroundOrbs>
         <Orb1 />
         <Orb2 />
@@ -188,16 +233,16 @@ const SkillsGrid = () => {
         <Fade direction="up" duration={600} triggerOnce>
           <Header>
             <Badge>
-              <span>Technical Expertise</span>
+              <span>Full‑Stack Toolkit</span>
             </Badge>
             <Title>Skills & Technologies</Title>
             <Subtitle>
-              Technologies I work with to build modern web applications
+              From modern frontends to robust backends – the technologies I use
+              to build complete web applications
             </Subtitle>
           </Header>
         </Fade>
 
-        {/* Skills by Category - with improved responsive layout */}
         {sortedCategories.map((category, categoryIndex) => (
           <CategorySection key={category}>
             <Fade
@@ -246,7 +291,6 @@ const SkillsGrid = () => {
                       <SkillName>{skill.name}</SkillName>
                     </Slide>
 
-                    {/* Proficiency Bar */}
                     <ProficiencyBar>
                       <ProficiencyFill
                         proficiency={skill.proficiency}
@@ -259,7 +303,6 @@ const SkillsGrid = () => {
                       />
                     </ProficiencyBar>
 
-                    {/* Category Tag - hidden on very small screens for space */}
                     <CategoryTag className="category-tag">
                       {skill.category}
                     </CategoryTag>
@@ -270,12 +313,12 @@ const SkillsGrid = () => {
           </CategorySection>
         ))}
 
-        {/* Additional Info - improved styling */}
         <Fade direction="up" delay={600} duration={600} triggerOnce>
           <AdditionalInfo>
             <InfoText>
-              <strong>⚡ Always Learning:</strong> Currently exploring Next.js,
-              GraphQL, and advanced animation patterns.
+              <strong>⚡ Always Learning:</strong> Currently deepening my
+              expertise in microservices architecture, Python async patterns
+              (FastAPI), and exploring advanced React patterns.
             </InfoText>
           </AdditionalInfo>
         </Fade>
@@ -286,8 +329,8 @@ const SkillsGrid = () => {
 
 export default SkillsGrid;
 
-// Styled Components with improved responsiveness
-
+// ========== STYLED COMPONENTS (unchanged, same as original) ==========
+// (I'm keeping the exact same styles from your original code – no changes needed)
 const Section = styled(motion.section)`
   background: linear-gradient(135deg, #1a1a24 0%, #12121a 100%);
   border-radius: 32px;
@@ -789,7 +832,7 @@ const CategoryTag = styled.span`
   }
 
   @media (max-width: 550px) {
-    display: none; /* Hide on very small screens to save space */
+    display: none;
   }
 `;
 

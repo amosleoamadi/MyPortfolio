@@ -14,6 +14,9 @@ import {
   Zap,
   Globe,
   Users,
+  Database,
+  Server,
+  Layers,
 } from "lucide-react";
 import { Fade, Zoom, Slide, Bounce, Flip, Rotate } from "react-awesome-reveal";
 
@@ -34,27 +37,26 @@ const AboutCard = () => {
     {
       icon: Heart,
       title: "Passion",
-      value: "Building UIs",
+      value: "System Design",
       gradient: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
     },
     {
-      icon: Code2,
+      icon: Layers,
       title: "Specialty",
-      value: "React & TypeScript",
+      value: "Full‑Stack (React + Node)",
       gradient: "linear-gradient(135deg, #ff9966 0%, #ff5e62 100%)",
     },
   ];
 
   const stats = [
-    { icon: Award, label: "Projects", value: "5+" },
-    { icon: Users, label: "Happy Clients", value: "5+" },
-    { icon: Coffee, label: "Coffee", value: "500+" },
-    { icon: Zap, label: "Commits", value: "500+" },
+    { icon: Award, label: "Projects", value: "8+" },
+    { icon: Users, label: "Happy Clients", value: "6+" },
+    { icon: Code2, label: "Repos", value: "25+" },
+    { icon: Zap, label: "Commits", value: "800+" },
   ];
 
   return (
     <Wrapper>
-      {/* Background decorative elements */}
       <BackgroundOrbs>
         <Orb1 />
         <Orb2 />
@@ -66,9 +68,9 @@ const AboutCard = () => {
           <Header>
             <Badge>
               <Sparkles size={16} />
-              <span>About Me</span>
+              <span>Full‑Stack Engineer</span>
             </Badge>
-            <Title>Get to know me</Title>
+            <Title>Building end‑to‑end experiences</Title>
           </Header>
         </Fade>
 
@@ -76,26 +78,25 @@ const AboutCard = () => {
           <LeftColumn>
             <Fade direction="up" delay={100} duration={600} triggerOnce>
               <Description>
-                I'm a frontend developer specializing in building scalable web
-                applications using React, JavaScript, and TypeScript. I work
-                extensively with modern state management tools like Redux
-                Toolkit and RTK Query, and I use styled-components and Tailwind
-                CSS to craft clean, responsive interfaces.
+                I'm a full‑stack developer with expertise in designing and
+                shipping complete web applications – from React + TypeScript
+                frontends to Node.js / Python backends and databases. I love
+                creating clean, maintainable code that scales and solves real
+                user needs across the entire stack.
               </Description>
             </Fade>
 
             <Fade direction="up" delay={200} duration={600} triggerOnce>
               <PassionText>
-                <QuoteIcon>"</QuoteIcon>
-                I'm passionate about writing maintainable, efficient code and
-                creating seamless user experiences that are both performant and
-                impactful. My focus is on building structured, scalable systems
-                that solve real-world problems.
+                <QuoteIcon>"</QuoteIcon>I believe great developers don't just
+                write code – they build systems. Whether it's crafting
+                responsive UIs, designing RESTful APIs, or optimizing database
+                queries, I'm driven to deliver full‑cycle solutions that are
+                both elegant and robust.
                 <QuoteIcon end>"</QuoteIcon>
               </PassionText>
             </Fade>
 
-            {/* Stats Grid */}
             <StatsGrid>
               {stats.map((stat, index) => (
                 <Zoom
@@ -160,7 +161,6 @@ const AboutCard = () => {
                         <InfoValue>{item.value}</InfoValue>
                       </Slide>
 
-                      {/* Decorative corner accent */}
                       <CornerAccent />
                     </CardContent>
                   </InfoCard>
@@ -168,12 +168,11 @@ const AboutCard = () => {
               ))}
             </InfoGrid>
 
-            {/* Availability Badge */}
             <Fade delay={800} duration={600} triggerOnce>
               <AvailabilityBadge>
                 <StatusDot />
                 <AvailabilityText>
-                  Available for freelance work
+                  Available for full‑stack contracts
                 </AvailabilityText>
                 <Sparkles size={14} />
               </AvailabilityBadge>
@@ -187,8 +186,7 @@ const AboutCard = () => {
 
 export default AboutCard;
 
-// Styled Components with enhanced design
-
+// Styled Components (unchanged styling, only content updated)
 const Wrapper = styled.div`
   position: relative;
   padding: 60px 0;

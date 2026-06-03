@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { Download, Mail, Sparkles, ArrowRight, Code, Zap } from "lucide-react";
 import {
-  Fade,
-  Slide,
-  Zoom,
-  Bounce,
-  JackInTheBox,
-  Rotate,
-} from "react-awesome-reveal";
+  Download,
+  Mail,
+  Sparkles,
+  ArrowRight,
+  Code,
+  Zap,
+  Briefcase,
+} from "lucide-react";
+import { Fade, Slide, Zoom, Bounce, JackInTheBox } from "react-awesome-reveal";
 import myImage from "../assets/professionalImage.jpeg";
 
 const HeroSection = () => {
@@ -29,7 +30,6 @@ const HeroSection = () => {
 
   return (
     <Section>
-      {/* Background decorative elements */}
       <BackgroundElements>
         <GradientOrb1 />
         <GradientOrb2 />
@@ -62,27 +62,45 @@ const HeroSection = () => {
               <RoleIcon>
                 <Code size={20} />
               </RoleIcon>
-              <Role>Frontend Developer</Role>
+              <Role>Full-Stack Engineer</Role>
             </RoleContainer>
+          </Fade>
+
+          {/* Experience Badge - Alignment locked via display properties */}
+          <Fade delay={350} duration={600} triggerOnce>
+            <ExperienceWrapper>
+              <ExperienceContainer>
+                <ExperienceIcon>
+                  <Briefcase size={18} />
+                </ExperienceIcon>
+                <ExperienceText>3+ years of hands-on experience</ExperienceText>
+              </ExperienceContainer>
+            </ExperienceWrapper>
           </Fade>
 
           <Fade delay={400} duration={800} triggerOnce>
             <Description>
-              A passionate frontend developer specializing in React, JavaScript,
-              and modern web technologies. I build beautiful, responsive, and
-              user-friendly web applications that deliver exceptional
-              experiences.
+              Full-Stack Engineer experienced in designing, developing, and
+              deploying scalable web applications from frontend user interfaces
+              to backend architectures. Combines expertise in modern JavaScript
+              frameworks, React.js, and TypeScript with a proven ability to
+              architect secure APIs, manage data layers, and optimize end-to-end
+              performance. Passionate about solving complex problems and
+              collaborating within agile teams to build impactful technology.
             </Description>
           </Fade>
 
-          {/* Tech Stack Pills */}
           <Fade delay={450} duration={600} triggerOnce>
             <TechStack>
               <TechPill>React</TechPill>
+              <TechPill>Next.js</TechPill>
               <TechPill>JavaScript</TechPill>
               <TechPill>TypeScript</TechPill>
               <TechPill>Tailwind</TechPill>
               <TechPill>Node.js</TechPill>
+              <TechPill>Express</TechPill>
+              <TechPill>Python</TechPill>
+              <TechPill>Django & FastAPI</TechPill>
             </TechStack>
           </Fade>
 
@@ -111,7 +129,6 @@ const HeroSection = () => {
             </ButtonGroup>
           </Fade>
 
-          {/* Download Success Notification */}
           {showDownloadSuccess && (
             <Zoom duration={500} triggerOnce>
               <SuccessNotification>
@@ -126,7 +143,7 @@ const HeroSection = () => {
           <JackInTheBox delay={300} duration={800} triggerOnce>
             <ProfileImageContainer>
               <ProfileImage>
-                <img src={myImage} alt="Amadi Amos Leo - Frontend Developer" />
+                <img src={myImage} alt="Amadi Amos Leo - Full-Stack Engineer" />
               </ProfileImage>
               <ImageGlow />
             </ProfileImageContainer>
@@ -140,7 +157,6 @@ const HeroSection = () => {
             </StatusBadge>
           </Bounce>
 
-          {/* Floating Elements */}
           <FloatingElement1>
             <Code size={16} />
           </FloatingElement1>
@@ -150,7 +166,6 @@ const HeroSection = () => {
         </ImageWrapper>
       </Container>
 
-      {/* Scroll Indicator */}
       <ScrollIndicator>
         <ScrollText>Scroll</ScrollText>
         <ScrollLine />
@@ -161,7 +176,7 @@ const HeroSection = () => {
 
 export default HeroSection;
 
-// Styled Components with enhanced design and fixed mobile issues
+// --- STYLED COMPONENTS CONTROLS ---
 
 const Section = styled.section`
   min-height: 100vh;
@@ -171,10 +186,11 @@ const Section = styled.section`
   padding: 100px 0;
   position: relative;
   overflow: hidden;
+  background-color: #0b0b10; /* Added default dark profile background fallback */
 
   @media (max-width: 768px) {
     min-height: auto;
-    padding: 60px 0 40px;
+    padding: 80px 0 60px;
   }
 `;
 
@@ -189,8 +205,8 @@ const GradientOrb1 = styled.div`
   position: absolute;
   top: -20%;
   right: -10%;
-  width: 600px;
-  height: 600px;
+  width: 100%;
+  height: 100%;
   background: radial-gradient(
     circle,
     rgba(102, 126, 234, 0.08) 0%,
@@ -209,8 +225,8 @@ const GradientOrb2 = styled.div`
   position: absolute;
   bottom: -20%;
   left: -10%;
-  width: 600px;
-  height: 600px;
+  width: 100%;
+  height: 100%;
   background: radial-gradient(
     circle,
     rgba(118, 75, 162, 0.08) 0%,
@@ -239,9 +255,8 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 100px; /* Increased gap between text and image */
+  gap: 80px;
   width: 100%;
-  max-width: 1280px;
   margin: 0 auto;
   padding: 0 40px;
   position: relative;
@@ -249,26 +264,34 @@ const Container = styled.div`
 
   @media (max-width: 1024px) {
     padding: 0 32px;
-    gap: 60px;
+    gap: 40px;
   }
 
   @media (max-width: 900px) {
     flex-direction: column-reverse;
-    gap: 50px; /* Increased gap on mobile */
+    gap: 48px;
     text-align: center;
     padding: 0 24px;
   }
 
   @media (max-width: 480px) {
     padding: 0 16px;
-    gap: 40px;
+    gap: 36px;
   }
 `;
 
 const Content = styled.div`
   flex: 1;
   position: relative;
-  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-col;
+  flex-direction: column;
+  align-items: flex-start; /* Forces alignment system to anchor strictly left */
+
+  @media (max-width: 900px) {
+    align-items: center; /* Centers layout nicely on tablets and phones */
+  }
 `;
 
 const BadgeWrapper = styled.div`
@@ -289,14 +312,14 @@ const Badge = styled.div`
   border-radius: 50px;
   font-size: 14px;
   color: #88aaff;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(102, 126, 234, 0.1);
 
   @media (max-width: 768px) {
     padding: 8px 20px;
     font-size: 13px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 `;
 
@@ -304,7 +327,7 @@ const Greeting = styled.span`
   display: block;
   font-size: 20px;
   color: #999;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   font-weight: 400;
   letter-spacing: 0.5px;
 
@@ -314,19 +337,24 @@ const Greeting = styled.span`
 `;
 
 const Title = styled.h1`
-  font-size: 55px;
+  font-size: 56px;
   font-weight: 800;
   color: #ffffff;
-  line-height: 1.1;
-  margin-bottom: 20px;
-  letter-spacing: -1px;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: -1.5px;
+  text-align: left;
+
+  @media (max-width: 900px) {
+    text-align: center;
+  }
 
   @media (max-width: 1024px) {
-    font-size: 54px;
+    font-size: 48px;
   }
 
   @media (max-width: 768px) {
-    font-size: 40px;
+    font-size: 38px;
   }
 
   @media (max-width: 480px) {
@@ -358,10 +386,6 @@ const RoleContainer = styled.div`
   align-items: center;
   gap: 12px;
   margin-bottom: 20px;
-
-  @media (max-width: 900px) {
-    justify-content: center;
-  }
 `;
 
 const RoleIcon = styled.div`
@@ -376,7 +400,7 @@ const RoleIcon = styled.div`
 `;
 
 const Role = styled.h2`
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 600;
   color: #ffffff;
   margin: 0;
@@ -386,21 +410,55 @@ const Role = styled.h2`
   }
 `;
 
-const Description = styled.p`
-  font-size: 17px;
-  color: #999;
-  line-height: 1.8;
-  max-width: 520px;
-  margin-bottom: 28px;
+const ExperienceWrapper = styled.div`
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 24px;
 
   @media (max-width: 900px) {
-    margin-left: auto;
-    margin-right: auto;
+    text-align: center;
+  }
+`;
+
+const ExperienceContainer = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(102, 126, 234, 0.08);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  padding: 8px 20px;
+  border-radius: 50px;
+  backdrop-filter: blur(5px);
+`;
+
+const ExperienceIcon = styled.div`
+  color: #88aaff;
+  display: flex;
+  align-items: center;
+`;
+
+const ExperienceText = styled.span`
+  font-size: 14px;
+  font-weight: 500;
+  color: #bbccff;
+  letter-spacing: 0.3px;
+`;
+
+const Description = styled.p`
+  font-size: 16px;
+  color: #a0aec0;
+  line-height: 1.75;
+  max-width: 100%;
+  margin-bottom: 28px;
+  text-align: left;
+
+  @media (max-width: 900px) {
+    text-align: center;
   }
 
   @media (max-width: 768px) {
     font-size: 15px;
-    margin-bottom: 24px;
   }
 `;
 
@@ -409,6 +467,7 @@ const TechStack = styled.div`
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 32px;
+  justify-content: flex-start;
 
   @media (max-width: 900px) {
     justify-content: center;
@@ -437,6 +496,8 @@ const ButtonGroup = styled.div`
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+  width: 100%;
+  justify-content: flex-start;
 
   @media (max-width: 900px) {
     justify-content: center;
@@ -444,7 +505,6 @@ const ButtonGroup = styled.div`
 
   @media (max-width: 480px) {
     flex-direction: column;
-    width: 100%;
   }
 `;
 
@@ -463,7 +523,6 @@ const PrimaryButton = styled(motion.a)`
   box-shadow: 0 8px 32px rgba(102, 126, 234, 0.35);
   cursor: pointer;
   border: none;
-  transition: all 0.3s ease;
 
   @media (max-width: 768px) {
     padding: 14px 28px;
@@ -520,8 +579,10 @@ const SuccessNotification = styled(motion.div)`
   color: #22c55e;
   margin-top: 24px;
   backdrop-filter: blur(10px);
+  align-self: flex-start;
 
   @media (max-width: 900px) {
+    align-self: center;
     justify-content: center;
     width: 100%;
   }
@@ -530,12 +591,6 @@ const SuccessNotification = styled(motion.div)`
 const ImageWrapper = styled.div`
   position: relative;
   flex-shrink: 0;
-  margin-left: 20px; /* Added margin to create space on the left */
-
-  @media (max-width: 900px) {
-    margin-left: 0;
-    margin-bottom: 20px;
-  }
 `;
 
 const ProfileImageContainer = styled.div`
