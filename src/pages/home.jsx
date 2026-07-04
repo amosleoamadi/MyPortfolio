@@ -18,8 +18,8 @@ const HeroSection = () => {
 
   const handleDownloadCV = () => {
     const link = document.createElement("a");
-    link.href = "/amos_Frontend_Engineer_CV.pdf";
-    link.download = "amos_Frontend_Engineer_CV.pdf";
+    link.href = "/amos_amadi_frontend_engineer_cv.pdf";
+    link.download = "amos_amadi_frontend_engineer_cv.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
